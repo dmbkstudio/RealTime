@@ -1,0 +1,10 @@
+{
+    "entry": "RealTime.js",
+    "name": "RealTime",
+    "type": "lse-quickjs",
+    "dependencies": [
+        {
+            "name": "legacy-script-engine-quickjs"
+        }
+    ]
+}
