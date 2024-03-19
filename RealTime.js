@@ -4,7 +4,7 @@
 const plugin = {
   Name: "RealTime",
   Introduction: "Sync real time",
-  Version: [0, 0, 1],
+  Version: [0, 0, 2],
   Other: {
     Author: "dmbkstudio",
     Github: "https://github.com/dmbkstudio/RealTime",
@@ -37,7 +37,8 @@ const getTimeObj = () => {
 // Convert Real Time to Tick Game Time
 const timeObjToTick = (timeObj) => {
   const { h } = timeObj;
-  return h * (24000 / 24);
+  const time = (h * 1000 - 8000 + 24000) % 24000;
+  return time;
 };
 
 // Sync Game Time to Real Time
@@ -50,3 +51,8 @@ const syncGameTimeToRealTime = () => {
 // Regularly execute time synchronization
 const syncInterval = parseInt(config.get("syncInterval"));
 setInterval(syncGameTimeToRealTime, syncInterval);
+
+// Listen pkayer is on bed
+mc.listen("onBedEnter", (_player) => {
+  return false;
+});
